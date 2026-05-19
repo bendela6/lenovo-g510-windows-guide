@@ -282,7 +282,12 @@
     <h2>Contents</h2>
     <ol>
       <li><a href="#prereq">What you need</a></li>
-      <li><a href="#step1">Back up your files</a></li>
+      <li><a href="#no-usb">No USB? Pick a method</a></li>
+      <li><a href="#reset-pc">Method A: Reset This PC</a></li>
+      <li><a href="#dvd">Method B: DVD</a></li>
+      <li><a href="#sdcard">Method C: SD card</a></li>
+      <li><a href="#onekey">Method D: OneKey Recovery</a></li>
+      <li><a href="#step1">Method E (USB): Back up your files</a></li>
       <li><a href="#step2">Make the USB installer</a></li>
       <li><a href="#step3">Plug into the G510</a></li>
       <li><a href="#step4">Boot from USB</a></li>
@@ -308,8 +313,88 @@
     <div class="tip"><strong>Recommended:</strong> Install <strong>Windows 10 (64-bit)</strong>. The G510 is from 2013, so Windows 11 isn't officially supported (works with tricks, but Win 10 is easier).</div>
   </section>
 
+  <section id="no-usb" class="step">
+    <h2><span class="step-num">★</span>No USB stick? You have 4 other options</h2>
+    <p>Pick whichever fits your situation. <strong>Method A (Reset This PC)</strong> is by far the easiest — no shopping, no burning, just a few clicks.</p>
+    <div class="prereq-grid">
+      <div class="prereq-card"><span class="ic">🔄</span><strong>A. Reset This PC</strong><span>No media at all. Easiest.</span></div>
+      <div class="prereq-card"><span class="ic">💿</span><strong>B. Burn a DVD</strong><span>G510 has a built-in DVD drive.</span></div>
+      <div class="prereq-card"><span class="ic">📇</span><strong>C. SD card</strong><span>G510 has an SD card slot.</span></div>
+      <div class="prereq-card"><span class="ic">🛠️</span><strong>D. OneKey Recovery</strong><span>Factory restore (if available).</span></div>
+    </div>
+    <div class="tip"><strong>Recommendation:</strong>Try Method A first. If Windows is too broken to even open Settings, fall back to Method B (DVD) or buy a $5 USB stick and follow the USB steps below.</div>
+  </section>
+
+  <section id="reset-pc" class="step">
+    <h2><span class="step-num">A</span>Reset This PC (no media needed) ⭐</h2>
+    <p>If your current Windows still boots, you don't need anything external. Windows can reinstall itself.</p>
+    <ol>
+      <li>Click <strong>Start</strong> → <strong>Settings</strong> (gear icon) → <strong>Update & Security</strong> → <strong>Recovery</strong>.</li>
+      <li>Under <strong>"Reset this PC"</strong>, click <strong>Get started</strong>.</li>
+      <li>Choose:
+        <ul>
+          <li><strong>Keep my files</strong> — removes apps and settings, keeps your documents and photos.</li>
+          <li><strong>Remove everything</strong> — wipes the whole drive (clean install, like the USB method).</li>
+        </ul>
+      </li>
+      <li>When asked how to reinstall, pick:
+        <ul>
+          <li><strong>Cloud download</strong> — downloads a fresh copy from Microsoft (needs internet, ~4 GB).</li>
+          <li><strong>Local reinstall</strong> — faster, uses files already on your drive.</li>
+        </ul>
+      </li>
+      <li>Click <strong>Reset</strong>. Wait 30–60 minutes. The laptop restarts several times by itself.</li>
+      <li>When it finishes, go through the first-time setup (same as <a href="#step6">Step 6 below</a>).</li>
+    </ol>
+    <div class="tip"><strong>Can't open Settings?</strong>Restart the laptop. As soon as you see the Windows logo, hold the power button to force shutdown. Repeat 3 times — Windows will boot into <strong>Recovery</strong>. From there, pick <strong>Troubleshoot → Reset this PC</strong>.</div>
+  </section>
+
+  <section id="dvd" class="step">
+    <h2><span class="step-num">B</span>Burn Windows to a DVD 💿</h2>
+    <p>The G510 has a built-in <strong>DVD drive</strong> (the slot on the right side). You need one blank disc:</p>
+    <ul>
+      <li><strong>DVD-R DL (dual-layer, 8.5 GB)</strong> — works for Windows 10 64-bit. Recommended.</li>
+      <li><strong>Regular DVD-R (4.7 GB)</strong> — only fits Windows 10 32-bit.</li>
+    </ul>
+    <ol>
+      <li>On another computer, go to <a href="https://www.microsoft.com/software-download/windows10" target="_blank" rel="noopener">microsoft.com/software-download/windows10</a> and run the Media Creation Tool.</li>
+      <li>When asked, choose <strong>"ISO file"</strong> instead of "USB flash drive". Save it to your desktop.</li>
+      <li>Put a blank DVD in your DVD burner.</li>
+      <li>Right-click the saved <code>.iso</code> file → <strong>"Burn disc image"</strong> → pick your DVD drive → <strong>Burn</strong>.</li>
+      <li>Eject. Take the DVD to the G510.</li>
+      <li>Put the DVD in the G510's drive, restart, hit the <strong>Novo button</strong>, pick the <strong>DVD drive</strong> from the Boot Menu.</li>
+      <li>The installer starts. Follow <a href="#step5">Step 5 below</a>.</li>
+    </ol>
+  </section>
+
+  <section id="sdcard" class="step">
+    <h2><span class="step-num">C</span>Use an SD card 📇</h2>
+    <p>The G510 has an <strong>SD card slot</strong> on the front. You can use an SD card (<strong>8 GB or larger</strong>) exactly like a USB stick.</p>
+    <ol>
+      <li>Plug the SD card into another computer (use an SD reader or built-in slot).</li>
+      <li>Run the Media Creation Tool — it'll see the SD card as a removable drive. Pick it like you would a USB stick.</li>
+      <li>Once it's ready, eject the SD card, plug it into the G510's SD slot.</li>
+      <li>Use the <strong>Novo button → Boot Menu</strong> and pick the SD card.</li>
+      <li>Follow <a href="#step5">Step 5 below</a>.</li>
+    </ol>
+    <div class="warn"><strong>Heads-up:</strong>Some older BIOSes don't boot from SD reliably. If the G510 doesn't show the SD card in the Boot Menu, switch to Method A or B.</div>
+  </section>
+
+  <section id="onekey" class="step">
+    <h2><span class="step-num">D</span>Lenovo OneKey Recovery (factory reset) 🛠️</h2>
+    <p>If your G510 still has the original Lenovo recovery partition, you can restore it to the state it was in when you bought it.</p>
+    <ol>
+      <li>Laptop <strong>OFF</strong>.</li>
+      <li>Press the <strong>Novo button</strong> (pinhole on the side).</li>
+      <li>Pick <strong>"System Recovery"</strong> from the menu.</li>
+      <li>Follow the prompts to restore to factory state.</li>
+    </ol>
+    <div class="warn"><strong>What you'll get:</strong>The original <strong>Windows 8 or 8.1</strong> plus all the Lenovo bloatware that came with the laptop. Then run Windows Update to upgrade to Windows 10. Only works if the recovery partition was never deleted.</div>
+  </section>
+
   <section id="step1" class="step">
-    <h2><span class="step-num">1</span>Back up your files</h2>
+    <h2><span class="step-num">1</span>Method E (USB): Back up your files</h2>
+    <p>The steps below are the <strong>classic USB-stick method</strong>. Skip to here if you bought a USB stick or none of the methods above worked.</p>
     <div class="danger"><strong>⚠️ Important</strong>Reinstalling Windows <strong>erases everything</strong> on the C: drive.</div>
     <ul>
       <li>Copy important files (photos, documents, downloads) to an <strong>external drive</strong>, another <strong>USB</strong>, or the cloud (<strong>Google Drive, OneDrive, Dropbox</strong>).</li>

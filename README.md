@@ -14,6 +14,68 @@ A simple, step-by-step guide. No tech jargon.
 
 ---
 
+## No USB? You have 4 other options
+
+Pick whichever fits your situation. **Method A is by far the easiest** — no shopping, no burning anything.
+
+### Method A — Reset This PC (no media needed) ⭐ EASIEST
+
+If your current Windows still boots, you don't need anything external. Windows can reinstall itself.
+
+1. **Start** → **Settings** (gear icon) → **Update & Security** → **Recovery**.
+2. Under **"Reset this PC"**, click **Get started**.
+3. Choose:
+   - **Keep my files** — removes apps/settings, keeps your documents and photos.
+   - **Remove everything** — wipes the whole drive (clean install).
+4. When asked how to reinstall, pick:
+   - **Cloud download** — fresh copy from Microsoft (~4 GB, needs internet).
+   - **Local reinstall** — faster, uses files already on your drive.
+5. Click **Reset**. Wait 30–60 minutes.
+6. When it finishes, do the first-time setup (jump to STEP 6 below).
+
+> **Can't open Settings?** Restart, and as soon as you see the Windows logo, hold the power button to force shutdown. Repeat 3 times — Windows will boot into Recovery. From there: **Troubleshoot → Reset this PC**.
+
+### Method B — Burn Windows to a DVD 💿
+
+The G510 has a built-in **DVD drive**. You need one blank disc:
+- **DVD-R DL (dual-layer, 8.5 GB)** — fits Windows 10 64-bit. Recommended.
+- **Regular DVD-R (4.7 GB)** — only fits Windows 10 32-bit.
+
+1. On another computer, go to https://www.microsoft.com/software-download/windows10 and run the Media Creation Tool.
+2. Choose **"ISO file"** instead of "USB flash drive". Save it.
+3. Put a blank DVD in your burner.
+4. Right-click the `.iso` → **"Burn disc image"** → pick your DVD drive → **Burn**.
+5. Take the DVD to the G510. Put it in the drive, restart, hit the **Novo button**, pick the DVD drive from Boot Menu.
+6. Follow STEP 5 below.
+
+### Method C — SD card 📇
+
+The G510 has an **SD card slot** on the front. Use an 8 GB+ SD card exactly like a USB.
+
+1. Plug the SD card into another computer.
+2. Run the Media Creation Tool — pick the SD card as the destination.
+3. Plug it into the G510's SD slot, use Novo button → Boot Menu → pick the SD card.
+4. Follow STEP 5 below.
+
+> Some older BIOSes don't boot from SD reliably. If the G510 doesn't list it in the Boot Menu, switch to Method A or B.
+
+### Method D — Lenovo OneKey Recovery (factory reset) 🛠️
+
+If the original Lenovo recovery partition is still intact:
+
+1. Laptop **OFF**.
+2. Press the **Novo button**.
+3. Pick **"System Recovery"**.
+4. Follow the prompts to restore to factory state.
+
+> This brings back the original **Windows 8/8.1** plus all the Lenovo bloatware. Then run Windows Update to upgrade to 10. Only works if the recovery partition was never deleted.
+
+---
+
+The steps below are the **classic USB-stick method**. Use them if you bought a USB stick or none of the methods above worked.
+
+---
+
 ## STEP 1 — Back up your files
 
 Reinstalling Windows **erases everything** on the C: drive.
