@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reinstall Windows on Lenovo G510 — Simple Guide</title>
+<meta name="description" content="Step-by-step guide to reinstall Windows 10 on a Lenovo G510 laptop. Beginner-friendly, no tech jargon." />
+<style>
+  :root {
+    --bg: #0e1116;
+    --panel: #161b22;
+    --panel-2: #1c232c;
+    --text: #e6edf3;
+    --muted: #9aa4b2;
+    --accent: #4f8cff;
+    --accent-2: #6ee7b7;
+    --warn: #f59e0b;
+    --danger: #ef4444;
+    --border: #2a313c;
+    --code-bg: #0b0e13;
+    --shadow: 0 10px 30px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --panel-2: #f0f3f8;
+      --text: #11161d;
+      --muted: #5b6573;
+      --accent: #2563eb;
+      --accent-2: #059669;
+      --warn: #b45309;
+      --danger: #b91c1c;
+      --border: #e2e7ee;
+      --code-bg: #f1f4f9;
+      --shadow: 0 8px 24px rgba(20,30,50,.08);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+  header.hero {
+    background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+    color: #fff;
+    border-radius: 18px;
+    padding: 36px 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+  }
+  header.hero h1 {
+    margin: 0 0 10px;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  header.hero p {
+    margin: 0;
+    opacity: 0.92;
+    font-size: 1.05rem;
+  }
+  .badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    backdrop-filter: blur(8px);
+  }
+
+  nav.toc {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+  }
+  nav.toc h2 {
+    margin: 0 0 10px;
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  nav.toc ol {
+    margin: 0;
+    padding-left: 20px;
+    columns: 2;
+    gap: 16px;
+  }
+  @media (max-width: 600px) { nav.toc ol { columns: 1; } }
+  nav.toc a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+  }
+  nav.toc a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+  section.step {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+  }
+  section.step h2 {
+    margin: 0 0 14px;
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  section.step ol, section.step ul { padding-left: 22px; }
+  section.step li { margin-bottom: 8px; }
+  section.step p { margin: 12px 0; }
+
+  .note, .warn, .tip {
+    border-left: 4px solid var(--accent);
+    background: var(--panel-2);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 14px 0;
+    font-size: 0.96rem;
+  }
+  .warn { border-left-color: var(--warn); }
+  .danger { border-left-color: var(--danger); background: var(--panel-2); padding: 12px 16px; border-radius: 8px; margin: 14px 0; border-left-width: 4px; border-left-style: solid; }
+  .tip { border-left-color: var(--accent-2); }
+  .note strong, .warn strong, .tip strong, .danger strong { display: block; margin-bottom: 4px; }
+
+  code {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.92em;
+  }
+  kbd {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    color: var(--text);
+  }
+  a { color: var(--accent); }
+  a:hover { text-decoration: underline; }
+
+  details {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+  }
+  details summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: "▸";
+    display: inline-block;
+    margin-right: 8px;
+    transition: transform .15s;
+    color: var(--accent);
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  details > *:not(summary) { margin-top: 10px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th { color: var(--muted); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .prereq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .prereq-card {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .prereq-card .ic { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+  .prereq-card strong { display: block; font-size: 0.98rem; }
+  .prereq-card span { color: var(--muted); font-size: 0.88rem; }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .top-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--accent);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transition: opacity .2s;
+    font-size: 1.2rem;
+  }
+  .top-btn.show { opacity: 1; }
+  @media print {
+    .top-btn, nav.toc { display: none; }
+    section.step { break-inside: avoid; box-shadow: none; }
+    body { background: #fff; color: #000; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Reinstall Windows on a Lenovo G510</h1>
+    <p>A simple, beginner-friendly guide. No tech jargon, just steps.</p>
+    <div class="badges">
+      <span class="badge">Windows 10 64-bit</span>
+      <span class="badge">~1–2 hours</span>
+      <span class="badge">Beginner-friendly</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#prereq">What you need</a></li>
+      <li><a href="#step1">Back up your files</a></li>
+      <li><a href="#step2">Make the USB installer</a></li>
+      <li><a href="#step3">Plug into the G510</a></li>
+      <li><a href="#step4">Boot from USB</a></li>
+      <li><a href="#step5">Install Windows</a></li>
+      <li><a href="#step6">First-time setup</a></li>
+      <li><a href="#step7">Install drivers</a></li>
+      <li><a href="#step8">Update Windows</a></li>
+      <li><a href="#step9">Reinstall your programs</a></li>
+      <li><a href="#problems">Common problems</a></li>
+      <li><a href="#shortcuts">Key shortcuts</a></li>
+    </ol>
+  </nav>
+
+  <section id="prereq" class="step">
+    <h2><span class="step-num">0</span>What you need before you start</h2>
+    <div class="prereq-grid">
+      <div class="prereq-card"><span class="ic">💾</span><strong>USB stick</strong><span>At least 8 GB. Will be erased.</span></div>
+      <div class="prereq-card"><span class="ic">💻</span><strong>Another PC</strong><span>To make the USB installer.</span></div>
+      <div class="prereq-card"><span class="ic">🔌</span><strong>Power cable</strong><span>Don't run on battery.</span></div>
+      <div class="prereq-card"><span class="ic">📶</span><strong>Wi-Fi password</strong><span>You'll need it later.</span></div>
+      <div class="prereq-card"><span class="ic">⏰</span><strong>1–2 hours</strong><span>Of uninterrupted time.</span></div>
+    </div>
+    <div class="tip"><strong>Recommended:</strong> Install <strong>Windows 10 (64-bit)</strong>. The G510 is from 2013, so Windows 11 isn't officially supported (works with tricks, but Win 10 is easier).</div>
+  </section>
+
+  <section id="step1" class="step">
+    <h2><span class="step-num">1</span>Back up your files</h2>
+    <div class="danger"><strong>⚠️ Important</strong>Reinstalling Windows <strong>erases everything</strong> on the C: drive.</div>
+    <ul>
+      <li>Copy important files (photos, documents, downloads) to an <strong>external drive</strong>, another <strong>USB</strong>, or the cloud (<strong>Google Drive, OneDrive, Dropbox</strong>).</li>
+      <li>Don't forget: browser bookmarks, saved passwords (export them), and any program license keys.</li>
+    </ul>
+  </section>
+
+  <section id="step2" class="step">
+    <h2><span class="step-num">2</span>Make the Windows USB installer</h2>
+    <p>Do this on <strong>any working computer</strong>.</p>
+    <ol>
+      <li>Plug your empty USB stick into the working computer.</li>
+      <li>Open a web browser and go to: <a href="https://www.microsoft.com/software-download/windows10" target="_blank" rel="noopener">microsoft.com/software-download/windows10</a></li>
+      <li>Click <strong>"Download tool now"</strong> (Media Creation Tool).</li>
+      <li>Open the downloaded file. Click <strong>Accept</strong>.</li>
+      <li>Choose <strong>"Create installation media (USB flash drive...) for another PC"</strong>. Click <strong>Next</strong>.</li>
+      <li>Leave the defaults (Language, Edition, 64-bit). Click <strong>Next</strong>.</li>
+      <li>Choose <strong>"USB flash drive"</strong>. Click <strong>Next</strong>.</li>
+      <li>Pick your USB stick from the list. Click <strong>Next</strong>.</li>
+      <li>Wait. It downloads Windows and copies it to the USB (15–30 minutes).</li>
+      <li>When it says "Your USB flash drive is ready", click <strong>Finish</strong>.</li>
+    </ol>
+    <p>Safely eject the USB. Done.</p>
+  </section>
+
+  <section id="step3" class="step">
+    <h2><span class="step-num">3</span>Plug the USB into the Lenovo G510</h2>
+    <ol>
+      <li><strong>Shut down</strong> the G510 completely (not sleep — fully off).</li>
+      <li>Plug in the <strong>power cable</strong>.</li>
+      <li>Plug the <strong>USB stick</strong> into a USB port.</li>
+    </ol>
+  </section>
+
+  <section id="step4" class="step">
+    <h2><span class="step-num">4</span>Boot from the USB stick</h2>
+    <p>The G510 has a little secret button called the <strong>Novo button</strong>. It's a tiny pinhole, usually on the <strong>left side</strong> of the laptop near the power cable, marked with a small curved arrow icon.</p>
+    <ol>
+      <li>Make sure the laptop is <strong>OFF</strong>.</li>
+      <li>Take a paperclip or pin and <strong>gently press the Novo button</strong> for 1 second.</li>
+      <li>The laptop will turn on and show this menu:
+        <ul>
+          <li>Normal Startup</li>
+          <li>BIOS Setup</li>
+          <li>Boot Menu</li>
+          <li>System Recovery</li>
+        </ul>
+      </li>
+      <li>Use the arrow keys to pick <strong>"Boot Menu"</strong> and press <kbd>Enter</kbd>.</li>
+      <li>You'll see a list of drives. Pick the one that says <strong>"USB HDD"</strong> or your USB stick's name. Press <kbd>Enter</kbd>.</li>
+    </ol>
+    <details>
+      <summary>Doesn't see the USB?</summary>
+      <p>Pick <strong>"BIOS Setup"</strong> instead → go to the <strong>Boot</strong> tab → change <strong>Boot Mode</strong> to <strong>UEFI</strong> (or try <strong>Legacy Support</strong> if UEFI fails) → set <strong>Boot Priority</strong> to <strong>Legacy First</strong> if needed → press <kbd>F10</kbd> to save and exit → try the Novo button again.</p>
+    </details>
+  </section>
+
+  <section id="step5" class="step">
+    <h2><span class="step-num">5</span>Install Windows</h2>
+    <p>The Windows installer will start. Take your time — each screen is simple.</p>
+    <ol>
+      <li><strong>Language / Time / Keyboard</strong> — Leave defaults. Click <strong>Next</strong>.</li>
+      <li>Click <strong>"Install now"</strong>.</li>
+      <li><strong>Product key screen</strong> — Click <strong>"I don't have a product key"</strong> (Windows activates automatically later if it was activated before on this laptop).</li>
+      <li><strong>Pick edition</strong> — Choose <strong>Windows 10 Home</strong> (or Pro if that's what you had). Click <strong>Next</strong>.</li>
+      <li><strong>License terms</strong> — Tick the box. Click <strong>Next</strong>.</li>
+      <li>Choose <strong>"Custom: Install Windows only (advanced)"</strong>. ← Important one.</li>
+      <li><strong>Pick the drive.</strong> You'll see a list of partitions:
+        <div class="danger"><strong>⚠️ This step erases your data.</strong>Click each partition (Drive 0 Partition 1, 2, 3...) and click <strong>Delete</strong> for each — until you see just <strong>"Drive 0 Unallocated Space"</strong>. Then click that and press <strong>Next</strong>.</div>
+      </li>
+      <li><strong>Wait.</strong> Windows copies files and restarts several times by itself (20–40 min). Don't touch anything.</li>
+    </ol>
+    <div class="warn"><strong>If it keeps booting from USB:</strong> Pull the USB out after the first restart.</div>
+  </section>
+
+  <section id="step6" class="step">
+    <h2><span class="step-num">6</span>First-time setup</h2>
+    <p>After it restarts, you'll see the blue setup screens.</p>
+    <ol>
+      <li>Pick your <strong>region</strong> (country). Click <strong>Yes</strong>.</li>
+      <li>Pick your <strong>keyboard layout</strong>. Click <strong>Yes</strong>, then <strong>Skip</strong> for the second one.</li>
+      <li>Connect to <strong>Wi-Fi</strong> (enter your password).</li>
+      <li>Choose <strong>"Set up for personal use"</strong>. Click <strong>Next</strong>.</li>
+      <li>Sign in with your <strong>Microsoft account</strong> — email and password.
+        <div class="tip"><strong>No Microsoft account?</strong>Click "Offline account" or "Create account" in the bottom corner.</div>
+      </li>
+      <li>Create a <strong>PIN</strong> (4+ digits) for quick login.</li>
+      <li><strong>Privacy settings</strong> — turn things off if you want more privacy. Click <strong>Accept</strong>.</li>
+      <li>Skip Cortana, OneDrive, and Office trial offers (click "No" / "Skip" on each).</li>
+      <li>Wait while it finishes ("This may take a few minutes...").</li>
+    </ol>
+    <p>You'll land on the desktop. 🎉</p>
+  </section>
+
+  <section id="step7" class="step">
+    <h2><span class="step-num">7</span>Install drivers</h2>
+    <p>Windows installs most drivers automatically, but G510-specific ones improve performance.</p>
+    <ol>
+      <li>Open the Edge browser. Go to: <a href="https://support.lenovo.com" target="_blank" rel="noopener">support.lenovo.com</a></li>
+      <li>Type <strong>"G510"</strong> in the search box.</li>
+      <li>Pick <strong>"Lenovo G510 Laptop (IdeaPad)"</strong>.</li>
+      <li>Click <strong>"Drivers & Software"</strong> → <strong>"Manual Update"</strong>.</li>
+      <li>Download and install (one at a time):
+        <ul>
+          <li><strong>Chipset</strong> driver (Intel)</li>
+          <li><strong>Graphics / VGA</strong> driver</li>
+          <li><strong>Wireless LAN</strong> driver (if Wi-Fi isn't working)</li>
+          <li><strong>Audio</strong> driver (if no sound)</li>
+          <li><strong>Bluetooth</strong> driver</li>
+        </ul>
+      </li>
+    </ol>
+    <div class="tip"><strong>Easier option:</strong>Skip this step — let <strong>Windows Update</strong> handle drivers. Open <strong>Settings → Update & Security → Windows Update → Check for updates</strong>. Run it 2–3 times until nothing new appears.</div>
+  </section>
+
+  <section id="step8" class="step">
+    <h2><span class="step-num">8</span>Update Windows</h2>
+    <ol>
+      <li>Click <strong>Start</strong> → <strong>Settings</strong> (gear icon) → <strong>Update & Security</strong>.</li>
+      <li>Click <strong>Check for updates</strong>.</li>
+      <li>Let it download and install everything. Takes a while.</li>
+      <li>Restart when asked.</li>
+      <li>Repeat until it says <strong>"You're up to date"</strong>.</li>
+    </ol>
+  </section>
+
+  <section id="step9" class="step">
+    <h2><span class="step-num">9</span>Install your programs</h2>
+    <p>Reinstall what you use:</p>
+    <ul>
+      <li><strong>Browser:</strong> Chrome, Firefox</li>
+      <li><strong>Microsoft Office</strong> (if licensed)</li>
+      <li><strong>VLC</strong> — plays any video</li>
+      <li><strong>7-Zip</strong> — opens .zip and .rar files</li>
+      <li><strong>Printer driver</strong> — from the printer brand's site</li>
+    </ul>
+    <p>Copy your backed-up files back from your external drive.</p>
+  </section>
+
+  <section id="problems" class="step">
+    <h2><span class="step-num">?</span>Common problems</h2>
+    <details>
+      <summary>USB stick doesn't show up in Boot Menu</summary>
+      <p>Go into BIOS Setup (Novo button → BIOS Setup) → <strong>Boot</strong> tab → enable <strong>Legacy Support</strong> AND set <strong>Boot Priority</strong> to <strong>Legacy First</strong>. Save with <kbd>F10</kbd>. Try again.</p>
+    </details>
+    <details>
+      <summary>"We couldn't create a new partition" error</summary>
+      <p>Unplug all USBs except the install one. Or, on the partition step, delete <strong>ALL</strong> partitions until only one big "Unallocated Space" remains.</p>
+    </details>
+    <details>
+      <summary>No Wi-Fi after install</summary>
+      <p>Use a wired Ethernet cable temporarily and run Windows Update, OR download the wireless driver on another computer from Lenovo's site and copy it over with a USB.</p>
+    </details>
+    <details>
+      <summary>Screen is huge / low resolution</summary>
+      <p>Graphics driver isn't installed yet. Run Windows Update or install it from the Lenovo site.</p>
+    </details>
+    <details>
+      <summary>Laptop is slow after install</summary>
+      <p>Wait 30 minutes after first boot — Windows runs background tasks. Also: the G510 will be <strong>much</strong> faster with an <strong>SSD</strong> (~$25 upgrade) replacing the old hard drive.</p>
+    </details>
+  </section>
+
+  <section class="step">
+    <h2><span class="step-num">📅</span>About Windows 11</h2>
+    <p>Windows 10 security updates end <strong>October 14, 2025</strong>. After that:</p>
+    <ul>
+      <li><strong>Easiest:</strong> Keep using Windows 10 — still works, just no new security patches.</li>
+      <li><strong>Or:</strong> Install Windows 11 with a workaround tool called <strong>Rufus</strong> (skips the CPU check). Search "install Windows 11 on unsupported PC Rufus" for guides.</li>
+    </ul>
+  </section>
+
+  <section id="shortcuts" class="step">
+    <h2><span class="step-num">⌨️</span>Quick reference</h2>
+    <table>
+      <thead><tr><th>What</th><th>Key</th></tr></thead>
+      <tbody>
+        <tr><td>Open Boot Menu</td><td><strong>Novo button</strong> (pinhole) or <kbd>F12</kbd></td></tr>
+        <tr><td>Open BIOS</td><td><strong>Novo button</strong> → BIOS Setup, or <kbd>F2</kbd></td></tr>
+        <tr><td>Save BIOS settings</td><td><kbd>F10</kbd></td></tr>
+        <tr><td>Cancel / Back</td><td><kbd>Esc</kbd></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>Take your time on each step. If something looks wrong, stop and re-read — don't click randomly. Good luck. 🛠️</p>
+  </footer>
+
+</div>
+
+<a href="#" class="top-btn" id="topBtn" aria-label="Back to top">↑</a>
+
+<script>
+  const btn = document.getElementById('topBtn');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('show', window.scrollY > 600);
+  });
+</script>
+</body>
+</html>
